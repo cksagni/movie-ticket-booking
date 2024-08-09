@@ -1,6 +1,7 @@
 package com.springboot.demo.mycoolapp.rest;
 
 import com.springboot.demo.mycoolapp.common.Coach;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,13 @@ public class DemoControllerDI {
 //    priority --> @Qualifier > @Primary
     @Autowired
     public DemoControllerDI(@Qualifier("trackCoach") Coach theCoach){
+        System.out.println("In Constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
+    }
+
+    @PostConstruct
+    public void startupCode(){
+        System.out.println();
     }
 
 
