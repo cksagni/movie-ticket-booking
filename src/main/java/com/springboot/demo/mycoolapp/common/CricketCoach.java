@@ -8,10 +8,11 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
+
 //@Lazy // Beans is initialized only when needed for DI
 //@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // new object for each instance creation. Default is Singleton
 // For "prototype scoped beans, Spring does not call the destroy method"
+@Component
 public class CricketCoach implements Coach{
 
     public CricketCoach(){
