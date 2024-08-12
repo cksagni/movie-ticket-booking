@@ -37,9 +37,25 @@ public class MycoolappApplication {
 //			queryForStudentsByLastName(studentDAO);
 
 //			update the student
-			updateStudent(studentDAO);
-//			find 
+//			updateStudent(studentDAO);
+//			find and delete student by id
+//			deleteStudent(studentDAO);
+//			delete all students
+			deleteAllStudents(studentDAO);
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students.");
+		int numOfRowsDeleted = studentDAO.deleteAll();
+		System.out.println("Total number of students deleted: " + numOfRowsDeleted);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int id = 3;
+		System.out.println("Deleting student by id: " + id);
+		studentDAO.delete(id);
+		System.out.println("Deleted.");
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
