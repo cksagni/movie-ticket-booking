@@ -25,7 +25,7 @@ public class MycoolappApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
 //			create students
-//			createMultipleStudent(studentDAO);
+			createMultipleStudent(studentDAO);
 
 //			find student by id
 //			readStudent(studentDAO);
@@ -41,7 +41,7 @@ public class MycoolappApplication {
 //			find and delete student by id
 //			deleteStudent(studentDAO);
 //			delete all students
-			deleteAllStudents(studentDAO);
+//			deleteAllStudents(studentDAO);
 		};
 	}
 
