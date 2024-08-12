@@ -34,10 +34,19 @@ public class MycoolappApplication {
 //			queryForStudents(studentDAO);
 
 //			find student by last name
-			queryForStudentsByLastName(studentDAO);
+//			queryForStudentsByLastName(studentDAO);
 
+//			update the student
+			updateStudent(studentDAO);
 //			find 
 		};
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		Student student = studentDAO.findById(1);
+		student.setFirstName("Scooby");
+		studentDAO.update(student);
+		System.out.println("Updated Student: " + student);
 	}
 
 	private void queryForStudentsByLastName(StudentDAO studentDAO) {
