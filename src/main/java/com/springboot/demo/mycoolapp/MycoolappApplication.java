@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication(
 		scanBasePackages = {
 				"com.springboot.demo.mycoolapp",
@@ -22,10 +24,43 @@ public class MycoolappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
 		return runner -> {
-			System.out.println("Hello World");
+//			create students
+//			createMultipleStudent(studentDAO);
 
-			createMultipleStudent(studentDAO);
+//			find student by id
+//			readStudent(studentDAO);
+
+//			find all Students
+//			queryForStudents(studentDAO);
+
+//			find student by last name
+			queryForStudentsByLastName(studentDAO);
+
+//			find 
 		};
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		List<Student> theStudents = studentDAO.findStudentByLastName("Doe");
+
+		for(Student student: theStudents){
+			System.out.println(student);
+		}
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		List<Student> theStudents = studentDAO.findAll();
+
+		for(Student student: theStudents){
+			System.out.println(student);
+		}
+
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+
+		Student student = studentDAO.findById(1);
+		System.out.println("Details of student with id 1: " + student);
 	}
 
 	private void createMultipleStudent(StudentDAO studentDAO) {
