@@ -7,11 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
-@SpringBootApplication(
-		scanBasePackages = {
-				"com.springboot.demo.mycoolapp",
-				"com.springboot.demo.util"
-		})
+@SpringBootApplication
 public class RestappApplication {
 
 	public static void main(String[] args) {
