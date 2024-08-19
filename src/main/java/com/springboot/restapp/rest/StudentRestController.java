@@ -1,6 +1,5 @@
 package com.springboot.restapp.rest;
 
-import com.springboot.restapp.dao.StudentDAO;
 import com.springboot.restapp.entity.Student;
 import com.springboot.restapp.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

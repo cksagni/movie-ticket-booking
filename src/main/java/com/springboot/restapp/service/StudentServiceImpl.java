@@ -1,42 +1,49 @@
 package com.springboot.restapp.service;
 
-import com.springboot.restapp.dao.StudentDAO;
+import com.springboot.restapp.dao.StudentRepository;
 import com.springboot.restapp.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService{
 
-    private StudentDAO studentDAO;
+    private StudentRepository studentRepository;
 
     @Autowired
-    public StudentServiceImpl(StudentDAO theStudentDAO){
-        this.studentDAO = theStudentDAO;
+    public StudentServiceImpl(StudentRepository studentRepo){
+        this.studentRepository = studentRepo;
     }
 
     @Override
     public List<Student> findAll() {
-        return this.studentDAO.findAll();
+        return this.studentRepository.findAll();
     }
 
     @Override
     public Student findById(int id) {
-        return this.studentDAO.findById(id);
+        Optional<Student> result = this.studentRepository.findById(id);
+        Student student = null;
+        if (result.isPresent()){
+            student = result.get();
+        }
+        else{
+            throw new RuntimeException("Did not find student id - " + id);
+        }
+        return student;
     }
 
-    @Transactional
     @Override
     public Student save(Student student) {
-        return this.studentDAO.save(student);
+        return this.studentRepository.save(student);
     }
 
-    @Transactional
     @Override
     public void deleteById(int id) {
-        this.studentDAO.deleteById(id);
+        this.studentRepository.deleteById(id);
     }
 }
