@@ -41,6 +41,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
+<!--	Add dependency for Spring Data REST	-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
 <!--  to expose some out of the box endpoints i.e. /actuator/health. To expose other endpoints update application.properties-->
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.boot</groupId>-->
