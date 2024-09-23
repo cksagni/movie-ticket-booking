@@ -1,10 +1,10 @@
-package com.springboot.restapp;
+package com.springboot.mtbs;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestappApplicationTests {
+class MovieAppTests {
 
 	@Test
 	void contextLoads() {
