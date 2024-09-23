@@ -1,10 +1,10 @@
-# A project to learn and experiment with the basics of spring boot
+# A web app to create a movie ticket booking service
 
 # Use maven plugin to package jar
 $ ./mvnw package
 
 # to run Spring boot app from cmd line
-$ java -jar target/spring-boot-basics-0.0.1-SNAPSHOT.jar
+$ java -jar target/movie-ticket-booking-0.0.1-SNAPSHOT.jar
 
 # Use maven plugin to run the spring boot app
 $ ./mvnw spring-boot:run
@@ -15,4 +15,3 @@ $ ./mvnw spring-boot:run
    $ docker run -d --name <container_name> -e MYSQL_ROOT_PASSWORD=<strong_password> -p 3306:3306 mysql:8.0
 3. To start docker container - $ docker container start <container_name>
 4. Configure mysql workbench to connect to this mysql server
-5. run sql scripts present in resources.static.sql_scripts

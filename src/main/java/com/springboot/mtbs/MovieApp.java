@@ -1,13 +1,13 @@
-package com.springboot.restapp;
+package com.springboot.mtbs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestappApplication {
+public class MovieApp {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(RestappApplication.class, args);
+		SpringApplication.run(MovieApp.class, args);
 	}
 }
