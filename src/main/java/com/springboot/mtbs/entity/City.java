@@ -2,6 +2,8 @@ package com.springboot.mtbs.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "cities")
@@ -11,6 +13,14 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @ManyToMany
+    @JoinTable(
+            name = "city_movie", // Join table name
+            joinColumns = @JoinColumn(name = "city_id"), // Foreign key in the join table referencing Movie
+            inverseJoinColumns = @JoinColumn(name = "movie_id") // Foreign key referencing Movie
+    )
+    private Set<Movie> movies = new HashSet<>();
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -55,6 +65,19 @@ public class City {
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
+    }
+
+    // Add a helper method to associate a city with a movie
+    public void addMovie(Movie movie) {
+        this.movies.add(movie);
+    }
 
     @Override
     public String toString() {
