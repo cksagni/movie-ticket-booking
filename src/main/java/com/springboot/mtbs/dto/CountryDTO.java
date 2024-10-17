@@ -3,13 +3,15 @@ package com.springboot.mtbs.dto;
 public class CountryDTO {
     private Integer id;
     private String name;
+    private boolean isActive;
 
     public CountryDTO() {
     }
 
-    public CountryDTO(Integer id, String name) {
+    public CountryDTO(Integer id, String name, boolean isActive) {
         this.id = id;
         this.name = name;
+        this.isActive = isActive;
     }
 
     public Integer getId() {
@@ -26,5 +28,13 @@ public class CountryDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

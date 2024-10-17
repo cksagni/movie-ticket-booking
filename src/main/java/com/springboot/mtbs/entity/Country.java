@@ -3,6 +3,7 @@ package com.springboot.mtbs.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "country")
@@ -25,16 +26,25 @@ public class Country {
     @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<State> states;
+
+
     public Country() {
     }
 
-    public Country(String name, boolean isActive) {
+    public Country(Integer id, String name, boolean isActive) {
+        this.id = id;
         this.name = name;
         this.isActive = isActive;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,6 +61,14 @@ public class Country {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public List<State> getStates() {
+        return states;
+    }
+
+    public void setStates(List<State> states) {
+        this.states = states;
     }
 
     public LocalDateTime getCreatedAt() {
