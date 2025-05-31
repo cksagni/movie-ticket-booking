@@ -16,7 +16,7 @@ public class State {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
@@ -32,7 +32,8 @@ public class State {
     public State() {
     }
 
-    public State(String name, Country country, boolean isActive) {
+    public State(Integer id, String name, Country country, boolean isActive) {
+        this.id = id;
         this.name = name;
         this.country = country;
         this.isActive = isActive;
@@ -40,6 +41,10 @@ public class State {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -65,6 +70,8 @@ public class State {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
