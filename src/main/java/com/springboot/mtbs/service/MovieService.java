@@ -4,9 +4,9 @@ import com.springboot.mtbs.dao.CityRepository;
 import com.springboot.mtbs.dao.MovieRepository;
 import com.springboot.mtbs.entity.City;
 import com.springboot.mtbs.entity.Movie;
+import com.springboot.mtbs.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -26,7 +26,7 @@ public class MovieService {
         if (city.isPresent()){
             return city.get().getMovies();
         } else {
-            throw new RuntimeException("City Not Found");
+            throw new NotFoundException("CITY_NOT_FOUND", "City not found for id=" + cityId);
         }
     }
 

@@ -25,8 +25,11 @@ public class Theatre {
     @Column(name = "updated_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "theater")
+    @OneToMany(mappedBy = "theatre")
     private List<Screen> screens;
+
+    public Theatre() {
+    }
 
     public Theatre(String name, String location, Integer totalScreens) {
         this.name = name;
@@ -54,7 +57,7 @@ public class Theatre {
 
     @Override
     public String toString() {
-        return "Theater{id=" + id + ", name='" + name + '\'' + ", location='" + location + '\'' +
+        return "Theatre{id=" + id + ", name='" + name + '\'' + ", location='" + location + '\'' +
                 ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
     }
 }

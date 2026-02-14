@@ -1,6 +1,8 @@
 package com.springboot.mtbs.entity;
 
+import com.springboot.mtbs.entity.enums.PaymentStatus;
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,8 +14,8 @@ public class Payment {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "reservation_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_id", nullable = false, unique = true)
     private Reservation reservation;
 
     @Column(name = "amount", nullable = false)
@@ -25,6 +27,13 @@ public class Payment {
     @Column(name = "payment_time", nullable = false)
     private LocalDateTime paymentTime;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private PaymentStatus status = PaymentStatus.INITIATED;
+
+    @Column(name = "payment_token")
+    private String paymentToken;
+
     @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
@@ -33,11 +42,12 @@ public class Payment {
 
     public Payment() {}
 
-    public Payment(Reservation reservation, Double amount, String paymentMethod, LocalDateTime paymentTime) {
+    public Payment(Reservation reservation, Double amount, String paymentMethod, LocalDateTime paymentTime, String paymentToken) {
         this.reservation = reservation;
         this.amount = amount;
         this.paymentMethod = paymentMethod;
         this.paymentTime = paymentTime;
+        this.paymentToken = paymentToken;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
@@ -58,16 +68,26 @@ public class Payment {
     public LocalDateTime getPaymentTime() { return paymentTime; }
     public void setPaymentTime(LocalDateTime paymentTime) { this.paymentTime = paymentTime; }
 
+    public PaymentStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PaymentStatus status) {
+        this.status = status;
+    }
+
+    public String getPaymentToken() {
+        return paymentToken;
+    }
+
+    public void setPaymentToken(String paymentToken) {
+        this.paymentToken = paymentToken;
+    }
+
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
     public LocalDateTime getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 
-    @Override
-    public String toString() {
-        return "Payment{id=" + id + ", reservation=" + reservation + ", amount=" + amount +
-                ", paymentMethod='" + paymentMethod + '\'' + ", paymentTime=" + paymentTime +
-                ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + '}';
-    }
 }
