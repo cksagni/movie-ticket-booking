@@ -21,7 +21,7 @@ public class MovieService {
         this.cityRepository = cityRepository;
     }
 
-    public Set<Movie> getMoviesByCity(Long cityId){
+    public Set<Movie> getMoviesByCity(Integer cityId){
         Optional<City> city = cityRepository.findById(cityId);
         if (city.isPresent()){
             return city.get().getMovies();
